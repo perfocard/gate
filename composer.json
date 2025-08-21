@@ -1,0 +1,30 @@
+{
+    "name": "perfocard/gate",
+    "description": "A package for Laravel that globally configures a proxy for all outgoing Http Client requests.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jarosław Goszowski",
+            "email": "goszowski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.0|^10.0|^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Perfocard\\Gate\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Perfocard\\Gate\\GateServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
