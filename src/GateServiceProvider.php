@@ -32,13 +32,36 @@ class GateServiceProvider extends ServiceProvider
         }
 
         if (config('gate.enabled')) {
-            if (is_null(config('gate.url'))) {
+            $urls = $this->normalizeProxyUrls(config('gate.urls', ''));
+
+            if (count($urls) === 0) {
                 throw new GateNotConfigured;
             }
 
+            $proxyUrl = $urls[array_rand($urls)];
+
             Http::globalOptions([
-                'proxy' => config('gate.url'),
+                'proxy' => $proxyUrl,
             ]);
         }
+    }
+
+    /**
+     * Normalize proxy URLs from config value (comma-separated string or array).
+     *
+     * @return array<int, string>
+     */
+    private function normalizeProxyUrls(mixed $urls): array
+    {
+        if (is_string($urls)) {
+            $urls = array_map('trim', explode(',', $urls));
+        }
+        if (! is_array($urls)) {
+            $urls = [$urls];
+        }
+
+        return array_values(array_filter($urls, static function ($u): bool {
+            return is_string($u) && $u !== '';
+        }));
     }
 }

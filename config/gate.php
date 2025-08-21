@@ -17,16 +17,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Proxy URL
+    /*
+    |--------------------------------------------------------------------------
+    | Proxy URLs
     |--------------------------------------------------------------------------
     |
-    | Define the proxy URL to be used for all HTTP client requests.
-    | Supported schemes include http, https, socks5, etc.
-    | If enabled is true but this is null, a GateNotConfigured
-    | exception will be thrown during the boot process.
+    | Specify a list of proxy server URLs to be used for all outgoing HTTP
+    | client requests. Supported schemes include http, https, socks5, etc.
+    | The value is read as a comma-separated string and converted to an array.
+    | If 'enabled' is true but the resulting array is empty, a GateNotConfigured
+    | exception may be thrown during boot.
     |
     */
 
-    'url' => env('GATE_URL', null),
+    'urls' => env('GATE_URLS'),
 
 ];
