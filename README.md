@@ -34,7 +34,7 @@ This will create a file at `config/gate.php`:
 
 ```php
 return [
-    'enabled' => env('GATE_ENABLED', true),
+    'enabled' => env('GATE_ENABLED', false),
 
     'url' => env('GATE_URL'), // e.g., http://localhost:8080 or socks5://127.0.0.1:9050
 ];
